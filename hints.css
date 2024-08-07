@@ -1,0 +1,17 @@
+/* Stadium CSS v1.0  */
+.stadium-hint {
+	font-size: var(--hint-font-size);
+	font-style: var(--hint-font-style);
+	color: var(--hint-font-color);
+	padding: var(--hint-top-padding) var(--hint-right-padding) var(--hint-bottom-padding) var(--hint-left-padding);
+}
+.has-validation-error .stadium-hint {
+	display: none;
+}
+.required-indicator:has(.stadium-hint) {
+	position: relative;
+}
+.required-indicator:has(.stadium-hint):after {
+	top:0;
+	right:0;
+}

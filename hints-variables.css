@@ -1,0 +1,10 @@
+/* Stadium CSS v1.0  */
+:root {
+    --hint-font-size: 11px;
+    --hint-font-color: #7a7a7a;
+    --hint-font-style: italic;
+    --hint-top-padding: 2px;
+    --hint-right-padding: 6px;
+    --hint-bottom-padding: 4px;
+    --hint-left-padding: 4px;
+}
