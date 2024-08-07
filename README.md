@@ -40,7 +40,15 @@ vals.forEach(function (ob) {
 ## Page.Load
 1. Drag a *List* action into the event handler and call it "HintsList"
 2. Assign the "hint" type to the List in the *Item Type* property
-3. Add the field classes and related hints to the "HintsList"
+3. Add the field classes and related hints to the "HintsList" (example below)
+
+```json
+= [{
+	"classname": "name",
+	"hint": "How we will call you"
+}]
+```
+
 4. Drag the Global Script called "Hints" into the Event Handler
 5. Assign the "HintsList" to the Global Script "Hints" input parameter
 
