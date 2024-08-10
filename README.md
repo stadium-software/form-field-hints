@@ -4,6 +4,9 @@ Sometimes we might want to help users complete a form field by providing some ad
 
 ![](images/SampleView.png)
 
+## Version 
+1.0 - initial
+
 # Setup
 
 ## Global Script
