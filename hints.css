@@ -1,9 +1,9 @@
 /* Stadium CSS v1.0  */
 .stadium-hint {
-	font-size: var(--hint-font-size);
-	font-style: var(--hint-font-style);
-	color: var(--hint-font-color);
-	padding: var(--hint-top-padding) var(--hint-right-padding) var(--hint-bottom-padding) var(--hint-left-padding);
+	font-size: var(--hint-font-size, var(--FONT-SIZE-SMALLER));
+	font-style: var(--hint-font-style, italic);
+	color: var(--hint-font-color, var(--X-DARK-GREY));
+	padding: var(--hint-top-padding, 2px) var(--hint-right-padding, 6px) var(--hint-bottom-padding, 4px) var(--hint-left-padding, 4px);
 }
 .has-validation-error .stadium-hint {
 	display: none;
