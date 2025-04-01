@@ -7,6 +7,8 @@ Sometimes we might want to help users complete a form field by providing some ad
 ## Version 
 1.0 - initial
 
+1.1 added check for array; changed px to rem; updated readme to 6.12+
+
 # Setup
 
 ## Global Script
@@ -14,10 +16,11 @@ Sometimes we might want to help users complete a form field by providing some ad
 2. Add the input parameters below to the Global Script
    1. Hints
 3. Drag a *JavaScript* action into the script
-4. Add the Javascript below into the JavaScript code property
+4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script v1.0 https: //github.com/stadium-software/form-field-hints */
+/* Stadium Script v1.1 https: //github.com/stadium-software/form-field-hints */
 let vals = ~.Parameters.Input.Hints;
+if (!Array.isArray(vals)) vals = [];
 vals.forEach(function (ob) {
     let elParent = document.querySelector("." + ob.classname);
     if (elParent) {
@@ -56,9 +59,9 @@ vals.forEach(function (ob) {
 5. Assign the "HintsList" to the Global Script "Hints" input parameter
 
 ## CSS
-The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
+The CSS below is required for the correct functioning of the module. Variables exposed in the [*hints-variables.css*](hints-variables.css) file can be [customised](#customising-css).
 
-**Stadium 6.6 or higher**
+### Before v6.12
 1. Create a folder called "CSS" inside of your Embedded Files in your application
 2. Drag the two CSS files from this repo [*hints-variables.css*](hints-variables.css) and [*hints.css*](hints.css) into that folder
 3. Paste the link tags below into the *head* property of your application
@@ -67,10 +70,28 @@ The CSS below is required for the correct functioning of the module. Some elemen
 <link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints-variables.css">
 ``` 
 
+### v6.12+
+1. Create a folder called "CSS" inside of your Embedded Files in your application
+2. Drag the CSS files from this repo [*hints.css*](hints.css) into that folder
+3. Paste the link tag below into the *head* property of your application
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints.css">
+``` 
+
 ### Customising CSS
 1. Open the CSS file called [*hints-variables.css*](hints-variables.css) from this repo
 2. Adjust the variables in the *:root* element as you see fit
-3. Overwrite the file in the CSS folder of your application with the customised file
+3. Stadium 6.12+ users can comment out any variable they do **not** want to customise
+4. Add the [*hints-variables.css*](hints-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
+5. Paste the link tag below into the *head* property of your application (if you don't already have it there)
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints-variables.css">
+``` 
+6. Add the file to the "CSS" inside of your Embedded Files in your application
 
-### CSS Upgrading
-To upgrade the CSS in this module, follow the [steps outlined in this repo](https://github.com/stadium-software/samples-upgrading)
+**NOTE: Do not change any of the CSS in the 'hints.css' file**
+
+## Upgrading Stadium Repos
+Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
+
+How to use and update application repos is described here: [Working with Stadium Repos](https://github.com/stadium-software/samples-upgrading)
