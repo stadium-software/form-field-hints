@@ -49,7 +49,7 @@ vals.forEach(function (ob) {
 3. Add the field classes and related hints to the "HintsList" (example below)
 
 ```json
-= [{
+[{
 	"classname": "name",
 	"hint": "How we will call you"
 }]
