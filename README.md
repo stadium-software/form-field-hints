@@ -1,4 +1,4 @@
-# Hints
+# Form Field Hints
 
 Sometimes we might want to help users complete a form field by providing some additional information in the form of a hint placed under the field. 
 
