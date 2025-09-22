@@ -9,6 +9,8 @@ Sometimes we might want to help users complete a form field by providing some ad
 
 1.1 added check for array; changed px to rem; updated readme to 6.12+
 
+1.2 Integrated CSS with script
+
 # Setup
 
 ## Global Script
@@ -18,9 +20,10 @@ Sometimes we might want to help users complete a form field by providing some ad
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script v1.1 https: //github.com/stadium-software/form-field-hints */
+/* Stadium Script v1.2 https: //github.com/stadium-software/form-field-hints */
 let vals = ~.Parameters.Input.Hints;
 if (!Array.isArray(vals)) vals = [];
+loadCSS();
 vals.forEach(function (ob) {
     let elParent = document.querySelector("." + ob.classname);
     if (elParent) {
@@ -30,6 +33,38 @@ vals.forEach(function (ob) {
         elParent.appendChild(hint);
     }
 });
+function loadCSS() {
+    let moduleID = "stadium-form-field-hints";
+    if (!document.getElementById(moduleID)) {
+        let cssMain = document.createElement("style");
+        cssMain.id = moduleID;
+        cssMain.type = "text/css";
+        cssMain.textContent = `
+/* Stadium CSS v1.0  */
+.stadium-hint {
+	font-size: var(--hint-font-size, var(--FONT-SIZE-SMALLER));
+	font-style: var(--hint-font-style, italic);
+	color: var(--hint-font-color, var(--X-DARK-GREY));
+	padding: var(--hint-top-padding, 0.2rem) var(--hint-right-padding, 0.6rem) var(--hint-bottom-padding, 0.4rem) var(--hint-left-padding, 0.4rem);
+}
+.has-validation-error .stadium-hint {
+	display: none;
+}
+.required-indicator:has(.stadium-hint) {
+	position: relative;
+}
+.required-indicator:has(.stadium-hint):after {
+	top:0;
+	right:0;
+}
+html {
+    min-height: 100%;
+    font-size: 62.5%;
+}        
+        `;
+        document.head.appendChild(cssMain);
+    }
+}
 ```
 
 ## Type
@@ -59,24 +94,7 @@ vals.forEach(function (ob) {
 5. Assign the "HintsList" to the Global Script "Hints" input parameter
 
 ## CSS
-The CSS below is required for the correct functioning of the module. Variables exposed in the [*hints-variables.css*](hints-variables.css) file can be [customised](#customising-css).
-
-### Before v6.12
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the two CSS files from this repo [*hints-variables.css*](hints-variables.css) and [*hints.css*](hints.css) into that folder
-3. Paste the link tags below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints.css">
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints-variables.css">
-``` 
-
-### v6.12+
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the CSS files from this repo [*hints.css*](hints.css) into that folder
-3. Paste the link tag below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints.css">
-``` 
+Variables exposed in the [*hints-variables.css*](hints-variables.css) file can be [customised](#customising-css).
 
 ### Customising CSS
 1. Open the CSS file called [*hints-variables.css*](hints-variables.css) from this repo
@@ -88,8 +106,6 @@ The CSS below is required for the correct functioning of the module. Variables e
 <link rel="stylesheet" href="{EmbeddedFiles}/CSS/hints-variables.css">
 ``` 
 6. Add the file to the "CSS" inside of your Embedded Files in your application
-
-**NOTE: Do not change any of the CSS in the 'hints.css' file**
 
 ## Upgrading Stadium Repos
 Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
